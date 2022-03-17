@@ -1,0 +1,35 @@
+pipeline
+    {
+      agent any
+        stages {
+	     stage('Build code')
+	        {
+		steps
+		   {
+		      sh ""
+		      echo "Building artifact"
+		      ""
+		    }
+		  }
+		  stage('Reading branch wise')
+		   {
+		   when
+		   {
+		   branch "feature*"
+		   }
+		   steps
+		   {
+		   echo "It is only for feature branch"
+		   }
+		   }
+	stage('Deploy code')
+	{
+	steps
+	{
+	sh """
+	echo "Deploying code"
+	"""
+	}
+	}
+	}
+      }
